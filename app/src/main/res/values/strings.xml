@@ -1,0 +1,22 @@
+<resources>
+
+    <string name="app_name">Hacker Mobile</string>
+    <string name="user_id">User ID</string>
+    <string name="api_key">API Key</string>
+    <string name="app_id">Application ID</string>
+    <string name="pub0">pub0</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="offline_message">No internet connection, Offline data!</string>
+    <string name="offline">No internet connection!</string>
+    <string name="go_online">Go Online</string>
+    <string name="retry_message">Network error!</string>
+    <string name="load_retry">Retry</string>
+    <string name="no_offer">No offers</string>
+    <string name="payload">Payload</string>
+    <string name="utils__settings">no internet</string>
+    <string name="utils__exit">exit</string>
+    <string name="utils__abort">abort</string>
+
+</resources>

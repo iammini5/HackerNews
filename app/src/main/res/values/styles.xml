@@ -1,0 +1,35 @@
+<resources xmlns:android="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorControlNormal</item>
+
+    </style>
+
+    <style name="textAppearanceListItemTitle">
+
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="textAppearanceListItemText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="textAppearanceListItemSmall">
+
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+
+    <style name="AppTheme.Dialog" />
+
+</resources>

@@ -1,0 +1,3 @@
+include ':hackernews-app', ':hackernews-core'
+project(':hackernews-app').projectDir = new File('app')
+project(':hackernews-core').projectDir = new File('core-lib')

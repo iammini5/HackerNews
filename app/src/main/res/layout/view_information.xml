@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yzeng.hackernews.view.activity.DetailActivity">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/information_layout_loading_bar"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/information_layout_detail_layout"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/information_layout_loading_bar"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/textAppearanceListItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:layout_marginBottom="@dimen/_5dp"
+            android:layout_marginLeft="@dimen/_5dp"
+            android:layout_marginRight="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:id="@+id/information_layout_tv_msg" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/comment_list"
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@android:color/darker_gray"
+            android:scrollbarSize="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/layout_comment" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/information_layout_error_layout"
+        android:visibility="gone"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/retry_message"
+            android:id="@+id/information_layout_tv_error"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</FrameLayout>
