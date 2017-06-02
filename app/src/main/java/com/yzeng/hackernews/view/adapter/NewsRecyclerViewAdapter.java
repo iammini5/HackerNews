@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.hackernews.api.Item;
 import com.jakewharton.rxbinding.view.RxView;
+import com.yzeng.hackernews.di.module.AdapterModule;
 import com.yzeng.hackernews.presenter.NewsBasePresenter;
 import com.yzeng.hackernews.R;
 import com.yzeng.hackernews.view.fragment.NewsFragment;
@@ -46,8 +47,11 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewViewHolder>
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_item, parent, false);
 
-        NewViewHolder newViewHolder = new NewViewHolder(view, newsFragment );
+        NewViewHolder newViewHolder = new NewViewHolder(view );
 
+        newsFragment.getDependenciesModules()
+                .plus(new AdapterModule(newViewHolder))
+                .inject(newViewHolder);
 
         return newViewHolder;
     }

@@ -32,14 +32,10 @@ public class NewViewHolder extends RecyclerView.ViewHolder implements BaseNewVie
     @BindView(R.id.information_layout_loading_error)
     TextView loadingError;
 
-    public NewViewHolder(View view, NewsFragment fragment) {
+    public NewViewHolder(View view) {
         super(view);
         this.view = view;
         ButterKnife.bind(this, view);
-
-        fragment.getDependenciesModules()
-                .plus(new AdapterModule(this))
-                .inject(this);
     }
 
     @Override
