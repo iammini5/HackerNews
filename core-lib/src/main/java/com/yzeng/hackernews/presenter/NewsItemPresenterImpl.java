@@ -41,11 +41,8 @@ public class NewsItemPresenterImpl implements NewsItemPresenter {
         }
 
         commentsubscription = interactor.loadNewsWithComments(item)
-                .subscribe(itemPair ->
-                        {
-                            view.showComments(itemPair.getKey(), itemPair.getValue());
-                        },
-
+                .subscribe(
+                        itemPair -> view.showComments(itemPair.getKey(), itemPair.getValue()),
                         //throw error on network issues
                         throwable -> {
                             if (null != view) {

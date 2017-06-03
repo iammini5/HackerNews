@@ -26,10 +26,17 @@ public class NewsInteractorImpl implements NewsInteractor {
     private ReplaySubject<Item> itemSubject;
     private ReplaySubject<ItemPair<Item,List<Item>>> commentsAndReplySubject;
 
+    private ReplaySubject<String[]> newStorySubject;
+    private ReplaySubject<String[]> bestStorySubject;
+
 
     private Subscription topNewsSubscription;
     private Subscription itemSubscription;
     private Subscription commentsSubscription;
+
+    private Subscription newStorySubscription;
+    private Subscription bestStorySubscription;
+
 
     int maxRefreshTimeout;
     int maxRefreshCount;
@@ -98,10 +105,10 @@ public class NewsInteractorImpl implements NewsInteractor {
                                         {
                                             return
                                                  Observable.from(response.getKids())
-                                                 .flatMap( kidsIndex -> api.getItem( String.valueOf(kidsIndex)))
-                                                         .toList()
-                                                         .flatMap( kidsList-> Observable.just(
-                                                                 new ItemPair<Item, List<Item>>(response, kidsList))  );
+                                                    .flatMap( kidsIndex -> api.getItem( String.valueOf(kidsIndex)))
+                                                    .toList()
+                                                    .flatMap( kidsList-> Observable.just(
+                                                             new ItemPair<Item, List<Item>>(response, kidsList))  );
 
                                         }
                                     })
@@ -115,6 +122,36 @@ public class NewsInteractorImpl implements NewsInteractor {
 
         }
         return commentsAndReplySubject.asObservable();
+    }
+
+    @Override
+    public Observable<String[]> loadNewStories() {
+        if (newStorySubscription == null || newStorySubscription.isUnsubscribed()) {
+            newStorySubject = ReplaySubject.create();
+
+
+            newStorySubscription = api.listNewStoryIndex()
+                    .subscribeOn(scheduler.backgroundThread())
+                    .observeOn(scheduler.mainThread())
+                    .subscribe(newStorySubject);
+        }
+
+        return newStorySubject.asObservable();
+    }
+
+    @Override
+    public Observable<String[]> loadBestStories() {
+        if (bestStorySubscription == null || bestStorySubscription.isUnsubscribed()) {
+            bestStorySubject = ReplaySubject.create();
+
+
+            bestStorySubscription = api.listBestStoryIndex()
+                    .subscribeOn(scheduler.backgroundThread())
+                    .observeOn(scheduler.mainThread())
+                    .subscribe(bestStorySubject);
+        }
+
+        return bestStorySubject.asObservable();
     }
 
     @Override

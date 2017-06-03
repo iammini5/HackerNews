@@ -14,4 +14,10 @@ public interface HackerNewsApi {
 
     @GET("item/{id}.json")
     Observable<Item> getItem(@Path("id") String itemId);
+
+    @GET("newstories.json")
+    Observable<String[]> listNewStoryIndex();
+
+    @GET("beststories.json")
+    Observable<String[]> listBestStoryIndex();
 }

@@ -2,7 +2,9 @@ package com.yzeng.hackernews.di.module;
 
 import com.google.gson.Gson;
 import com.yzeng.hackernews.client.HackerNewsApi;
+import com.yzeng.hackernews.client.SplashBaseApi;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -21,13 +23,32 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    public HackerNewsApi provideNewsApiService(Retrofit retrofit) {
+    public HackerNewsApi provideNewsApiService(@Named("newsEndPoint")Retrofit retrofit) {
         return retrofit.create(HackerNewsApi.class);
     }
 
     @Provides
     @Singleton
-    public Retrofit provideRetrofit(HttpUrl baseUrl, Converter.Factory converterFactory, CallAdapter.Factory callAdapterFactory, OkHttpClient okHttpClient) {
+    public SplashBaseApi providePicsApiService(@Named("picsEndPoint")Retrofit retrofit) {
+        return retrofit.create(SplashBaseApi.class);
+    }
+
+    @Provides
+    @Singleton
+    @Named("newsEndPoint")
+    public Retrofit provideNewsRetrofit( @Named("newsEndPoint") HttpUrl baseUrl, Converter.Factory converterFactory, CallAdapter.Factory callAdapterFactory, OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    @Named("picsEndPoint")
+    public Retrofit providePicsRetrofit( @Named("picsEndPoint") HttpUrl baseUrl, Converter.Factory converterFactory, CallAdapter.Factory callAdapterFactory, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(converterFactory)

@@ -1,10 +1,10 @@
 ext {
-    minSdkVersion = 11
-    compileSdkVersion = 24
-    buildToolsVersion = "24.0.3"
+    minSdkVersion = 14
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.1"
 
     //Android
-    androidSupportVersion = "24.2.1"
+    androidSupportVersion = "25.3.1"
     butterknifeVersion = "8.0.1"
     rxandroidVersion = "1.2.1"
     okhttpVersion = "3.4.1"
@@ -15,7 +15,7 @@ ext {
     daggerVersion = "2.4"
     gmsVersion = "9.6.0"
     rxbindingVersion = "0.4.0"
-
+    fragmentationVersion = "0.10.1"
     //Java
     rxjavaVersion = "1.1.9"
 
@@ -49,6 +49,7 @@ ext {
             dagger               : "com.google.dagger:dagger:${daggerVersion}",
             gmsAds               : "com.google.android.gms:play-services-ads:${gmsVersion}",
             rxbinding            : "com.jakewharton.rxbinding:rxbinding:${rxbindingVersion}",
+            fragmentation        : "me.yokeyword:fragmentation:${fragmentationVersion}",
     ]
 
     aptLibraries = [

@@ -1,15 +1,14 @@
 package com.yzeng.hackernews.view;
 
 import com.hackernews.api.Item;
+import com.splashbase.api.Picture;
 
-import java.io.Serializable;
-
-public interface BaseNewView {
+public interface BasePicView {
     void showProgress();
 
     void hideProgress();
 
-    void setValue(Item item);
+    void setValue(Picture picture);
 
     void showRetryMessage();
 }

@@ -18,5 +18,10 @@
     <string name="utils__settings">no internet</string>
     <string name="utils__exit">exit</string>
     <string name="utils__abort">abort</string>
+    <string name="menu_top">Top</string>
+    <string name="menu_new">New</string>
+    <string name="menu_best">Best</string>
+    <string name="menu_pics">Picture</string>
+
 
 </resources>

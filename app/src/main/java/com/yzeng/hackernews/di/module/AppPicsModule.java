@@ -4,24 +4,27 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.yzeng.hackernews.di.scope.NewsScope;
+import com.yzeng.hackernews.di.scope.PicScope;
 import com.yzeng.hackernews.view.activity.AbstractActivity;
 import com.yzeng.hackernews.view.activity.BaseActivity;
 import com.yzeng.hackernews.view.activity.MainActivity;
 import com.yzeng.hackernews.view.adapter.NewsRecyclerViewAdapter;
+import com.yzeng.hackernews.view.adapter.PicsRecyclerViewAdapter;
 import com.yzeng.hackernews.view.fragment.NewsFragment;
+import com.yzeng.hackernews.view.fragment.PicsFragment;
 
 import dagger.Module;
 import dagger.Provides;
 
 
 @Module
-public class AppNewsModule extends NewsModule {
+public class AppPicsModule extends PicsModule {
     private final Context context;
-    private final NewsFragment.OnListFragmentInteractionListener listener;
-    private final NewsFragment newsFragment;
+    private final PicsFragment.OnListFragmentInteractionListener listener;
+    private final PicsFragment newsFragment;
     private final MainActivity baseActivity;
 
-    public AppNewsModule(Context context, NewsFragment fragment) {
+    public AppPicsModule(Context context, PicsFragment fragment) {
         super(fragment);
 
         this.newsFragment = fragment;
@@ -36,8 +39,8 @@ public class AppNewsModule extends NewsModule {
                     + " must implement baseActivity");
         }
 
-        if (context instanceof NewsFragment.OnListFragmentInteractionListener) {
-            listener = (NewsFragment.OnListFragmentInteractionListener) context;
+        if (context instanceof PicsFragment.OnListFragmentInteractionListener) {
+            listener = (PicsFragment.OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -45,27 +48,27 @@ public class AppNewsModule extends NewsModule {
     }
 
     @Provides
-    @NewsScope
-    public NewsFragment.OnListFragmentInteractionListener provideOnListFragmentInteractionListener() {
+    @PicScope
+    public PicsFragment.OnListFragmentInteractionListener provideOnListFragmentInteractionListener() {
         return listener;
     }
 
     @Provides
-    @NewsScope
+    @PicScope
     public MainActivity provideBaseActivity() {
         return baseActivity;
     }
 
     @Provides
-    @NewsScope
+    @PicScope
     public LinearLayoutManager provideLayoutManager() {
         return new LinearLayoutManager(context);
     }
 
     @Provides
-    @NewsScope
-    public NewsRecyclerViewAdapter provideAdapter() {
-        return new NewsRecyclerViewAdapter(newsFragment);
+    @PicScope
+    public PicsRecyclerViewAdapter provideAdapter() {
+        return new PicsRecyclerViewAdapter(newsFragment);
     }
 
 }

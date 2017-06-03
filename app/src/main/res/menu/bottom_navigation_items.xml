@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_search"
+        android:title="@string/menu_top"
+        android:icon="@mipmap/ic_account_balance_black_48dp" />
+    <item android:id="@+id/action_settings"
+        android:title="@string/menu_new"
+        android:icon="@mipmap/ic_account_box_black_48dp" />
+    <item android:id="@+id/action_navigation"
+        android:title="@string/menu_best"
+        android:icon="@mipmap/ic_add_shopping_cart_black_48dp" />
+    <item android:id="@+id/action_picture"
+        android:title="@string/menu_pics"
+        android:icon="@mipmap/ic_book_black_48dp" />
+</menu>

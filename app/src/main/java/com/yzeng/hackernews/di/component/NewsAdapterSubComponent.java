@@ -1,5 +1,7 @@
 package com.yzeng.hackernews.di.component;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.yzeng.hackernews.di.module.AdapterModule;
 import com.yzeng.hackernews.di.scope.NewsScope;
 import com.yzeng.hackernews.view.adapter.NewViewHolder;

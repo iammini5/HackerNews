@@ -15,7 +15,6 @@ import dagger.Provides;
 public class NewsModule {
 
     private NewsView view;
-    private BaseNewView baseView;
 
     public NewsModule(NewsView view) {
         this.view = view;

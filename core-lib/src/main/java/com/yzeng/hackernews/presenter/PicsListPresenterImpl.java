@@ -1,7 +1,9 @@
 package com.yzeng.hackernews.presenter;
 
 import com.yzeng.hackernews.model.NewsInteractor;
+import com.yzeng.hackernews.model.PicsInteractor;
 import com.yzeng.hackernews.view.NewsView;
+import com.yzeng.hackernews.view.PicsView;
 
 import javax.inject.Inject;
 
@@ -9,21 +11,20 @@ import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
 
-
-public class NewsListPresenterImpl implements NewsListPresenter {
+public class PicsListPresenterImpl implements PicsListPresenter {
 
     @Inject
-    NewsInteractor interactor;
+    PicsInteractor interactor;
 
-    private NewsView view;
+    private PicsView view;
     private Subscription subscription = Subscriptions.empty();
 
     @Inject
-    public NewsListPresenterImpl() {
+    public PicsListPresenterImpl() {
     }
 
     @Override
-    public void setView(NewsView view) {
+    public void setView(PicsView view) {
         this.view = view;
     }
 
@@ -34,34 +35,18 @@ public class NewsListPresenterImpl implements NewsListPresenter {
         view = null;
     }
 
+
     @Override
-    public void loadNewsListData(int type) {
+    public void loadsListData() {
         if (null != view) {
             view.showProgress();
         }
-        Observable<String[]> observable;
-        switch (type)
-        {
-            case TOP_STORY_LIST:
-                observable = interactor.loadTopNews();
-                break;
-            case LATEST_STORY_LIST:
-                observable = interactor.loadNewStories();
-                break;
-            case BEST_STORY_LIST:
-                observable = interactor.loadBestStories();
-                break;
-            default:
-                view.showOfflineMessage();
-                return;
-        }
 
-        subscription = observable
+        subscription = interactor.loadLatestPic()
                 .subscribe(offerResponse ->
                         {
-                            String[] arrayItem = (offerResponse);
                             view.hideProgress();
-                            view.setNewsValue(arrayItem);
+                            view.setPicsValue(offerResponse.getImages());
                         },
 
                         //throw error on network issues

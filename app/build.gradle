@@ -81,6 +81,8 @@ dependencies {
     compile rootProject.ext.libraries.appSettings
 
     compile rootProject.ext.libraries.picasso
+    compile rootProject.ext.libraries.fragmentation
+
 
     compile rootProject.ext.libraries.butterknife
     apt rootProject.ext.aptLibraries.butterknifeCompiler
@@ -89,5 +91,4 @@ dependencies {
     apt rootProject.ext.aptLibraries.daggerCompiler
 
     compile rootProject.ext.libraries.timber
-
 }

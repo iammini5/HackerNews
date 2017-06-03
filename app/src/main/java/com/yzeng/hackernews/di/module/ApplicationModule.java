@@ -35,8 +35,16 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public HttpUrl provideEndpoint() {
-        return HttpUrl.parse(Constants.BASE_URL);
+    @Named("newsEndPoint")
+    public HttpUrl provideNewsEndpoint() {
+        return HttpUrl.parse(Constants.BASE_URL_NEWS);
+    }
+
+    @Provides
+    @Singleton
+    @Named("picsEndPoint")
+    public HttpUrl providePicsEndpoint() {
+        return HttpUrl.parse(Constants.BASE_URL_PICS);
     }
 
     @Provides

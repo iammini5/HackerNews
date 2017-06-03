@@ -8,23 +8,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 
 import com.hackernews.api.Item;
-import com.yzeng.hackernews.presenter.NewsListPresenter;
+import com.splashbase.api.Picture;
 import com.yzeng.hackernews.R;
 import com.yzeng.hackernews.di.component.ApplicationComponent;
 import com.yzeng.hackernews.di.component.NewsSubComponent;
+import com.yzeng.hackernews.di.component.PicsSubComponent;
 import com.yzeng.hackernews.di.module.AppNewsModule;
-import com.yzeng.hackernews.presenter.NewsListPresenterImpl;
+import com.yzeng.hackernews.di.module.AppPicsModule;
+import com.yzeng.hackernews.presenter.NewsListPresenter;
+import com.yzeng.hackernews.presenter.PicsListPresenter;
 import com.yzeng.hackernews.util.AppConstants;
 import com.yzeng.hackernews.util.ItemSpaceDecoration;
 import com.yzeng.hackernews.view.NewsView;
+import com.yzeng.hackernews.view.PicsView;
 import com.yzeng.hackernews.view.activity.AbstractActivity;
 import com.yzeng.hackernews.view.activity.BaseActivity;
 import com.yzeng.hackernews.view.activity.MainActivity;
 import com.yzeng.hackernews.view.adapter.NewsRecyclerViewAdapter;
+import com.yzeng.hackernews.view.adapter.PicsRecyclerViewAdapter;
+
 import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,18 +38,18 @@ import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
 
-public class NewsFragment extends AbstractFragment implements NewsView, SwipeRefreshLayout.OnRefreshListener {
+public class PicsFragment extends AbstractFragment implements PicsView, SwipeRefreshLayout.OnRefreshListener {
 
     private final static String FRAGMENT_TYPE = "FRAGMENT_STORY_TYPE";
 
     @Inject
-    public NewsListPresenter presenter;
+    public PicsListPresenter presenter;
     @Inject
     Context context;
     @Inject
     LinearLayoutManager layoutManager;
     @Inject
-    NewsRecyclerViewAdapter adapter;
+    PicsRecyclerViewAdapter adapter;
     @Inject
     OnListFragmentInteractionListener listener;
     @Inject
@@ -62,7 +68,7 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
-    private NewsSubComponent newsSubComponent;
+    private PicsSubComponent newsSubComponent;
 
     private CompositeSubscription subscriptions = new CompositeSubscription();
 
@@ -72,11 +78,11 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public NewsFragment() {
+    public PicsFragment() {
     }
 
-    public static NewsFragment newInstance(int type) {
-        NewsFragment fragment = new NewsFragment();
+    public static PicsFragment newInstance(int type) {
+        PicsFragment fragment = new PicsFragment();
         Bundle args = new Bundle();
         args.putInt(FRAGMENT_TYPE, type);
         fragment.setArguments(args);
@@ -132,7 +138,7 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
         initRecyclerView();
         fragmentType = getArguments().getInt(FRAGMENT_TYPE);
 
-        presenter.loadNewsListData(fragmentType);
+        presenter.loadsListData();
 
         return view;
     }
@@ -142,7 +148,7 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
         if(null == newsSubComponent)
         {
             newsSubComponent = component
-                    .plus(new AppNewsModule(context, this));
+                    .plus(new AppPicsModule(context, this));
             newsSubComponent.inject(this);
         }
 
@@ -153,7 +159,7 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
         return mainActivity;
     }
 
-    public NewsSubComponent getDependenciesModules()
+    public PicsSubComponent getDependenciesModules()
     {
         return newsSubComponent;
     }
@@ -188,6 +194,19 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
     }
 
     @Override
+    public void setPicsValue(Picture[] pictureSet) {
+        Timber.d("Loaded Offers: %s", pictureSet.toString());
+
+        if (adapter.getItemCount() == 0) {
+            adapter.setNews(pictureSet);
+            initRecyclerView();
+        } else {
+            adapter.setNews(pictureSet);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public void showMessage(String message) {
         getBaseActivity().showMessage(message);
     }
@@ -204,21 +223,9 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
 
     private void loadOffersData() {
         adapter.clearNews();
-        presenter.loadNewsListData(fragmentType);
+        presenter.loadsListData();
     }
 
-    @Override
-    public void setNewsValue(String[] news) {
-        Timber.d("Loaded Offers: %s", news.toString());
-
-        if (adapter.getItemCount() == 0) {
-            adapter.setNews(news);
-            initRecyclerView();
-        } else {
-            adapter.addMoreNews(news);
-            adapter.notifyDataSetChanged();
-        }
-    }
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(layoutManager);
@@ -232,7 +239,7 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
 
     public interface OnListFragmentInteractionListener {
 
-        void onListFragmentInteraction(Item offer);
+        void onListFragmentInteraction(Picture offer);
 
     }
 }
