@@ -8,7 +8,7 @@ This repository holds the source code of the Hacker News Mobile Application, a s
 
 * Hacker News Mobile Application
 *       Version:  1.0
-* Last Update: Sat May 27, 2017
+* Last Update: Sat Jun 4, 2017
 
 --------------------
 ### Development Tools ###
@@ -75,3 +75,5 @@ The Android Log system is replaced with [Timber](https://github.com/JakeWharton/
 Used new SupportVector library in some icons cases for a better UI.
 
 Used [circleci](http://circleci.com) as Continues Integration service which binded with Github repo.
+
+React Native version is under development.
