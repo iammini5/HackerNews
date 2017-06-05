@@ -48,7 +48,8 @@
                 android:id="@+id/layout_item_image"
                 tools:text="URL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"/>
 
         </LinearLayout>
     </FrameLayout>

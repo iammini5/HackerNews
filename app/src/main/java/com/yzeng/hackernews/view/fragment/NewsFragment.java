@@ -2,6 +2,7 @@ package com.yzeng.hackernews.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,6 +63,9 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+
     private NewsSubComponent newsSubComponent;
 
     private CompositeSubscription subscriptions = new CompositeSubscription();
@@ -98,6 +102,11 @@ public class NewsFragment extends AbstractFragment implements NewsView, SwipeRef
         loadOffersData();
     }
 
+    @OnClick(R.id.fab)
+    void onFloatingClick()
+    {
+        loadOffersData();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

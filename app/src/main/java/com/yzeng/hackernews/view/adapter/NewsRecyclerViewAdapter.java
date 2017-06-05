@@ -77,5 +77,6 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewViewHolder>
 
     public void clearNews() {
         news = new ArrayList<>();
+        notifyDataSetChanged();
     }
 }

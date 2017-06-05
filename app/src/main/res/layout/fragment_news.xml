@@ -73,4 +73,13 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="24dp"
+        android:src="@mipmap/ic_account_box_black_48dp"/>
+
 </FrameLayout>

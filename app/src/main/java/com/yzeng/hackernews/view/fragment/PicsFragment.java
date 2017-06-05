@@ -201,8 +201,8 @@ public class PicsFragment extends AbstractFragment implements PicsView, SwipeRef
             adapter.setNews(pictureSet);
             initRecyclerView();
         } else {
+            adapter.clearNews();
             adapter.setNews(pictureSet);
-            adapter.notifyDataSetChanged();
         }
     }
 

@@ -41,6 +41,7 @@ public class PicsRecyclerViewAdapter extends RecyclerView.Adapter<PicViewHolder>
 
     public void setNews(Picture[] news) {
         this.news = new ArrayList<Picture>(Arrays.asList(news));
+        notifyDataSetChanged();
     }
 
     public void addMoreNews(Picture[] news) {
@@ -77,5 +78,6 @@ public class PicsRecyclerViewAdapter extends RecyclerView.Adapter<PicViewHolder>
 
     public void clearNews() {
         news = new ArrayList<>();
+        notifyDataSetChanged();
     }
 }

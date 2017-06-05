@@ -1,9 +1,7 @@
-package com.mirhoseini.fyber;
+package com.yzeng.hackernews;
 
-/**
- * Created by Mohsen on 30/09/2016.
- */
-public class FyberApplicationImpl extends FyberApplication {
+
+public class HackerNewsApplicationImpl extends HackerNewsApplication {
 
     @Override
     public void initApplication() {
