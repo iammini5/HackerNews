@@ -71,6 +71,7 @@ public class MainActivity extends AbstractActivity implements MainView, NewsFrag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         Timber.d("Main Activity Created");
         setContentView(R.layout.activity_main);
