@@ -18,12 +18,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".view.activity.MainActivity"
-                  android:theme="@style/SplashTheme"
                   android:configChanges="orientation|screenLayout|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -33,6 +28,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.yzeng.hackernews.view.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.LaunchActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
     </application>
