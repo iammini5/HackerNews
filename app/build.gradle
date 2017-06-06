@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -73,8 +74,6 @@ dependencies {
     compile rootProject.ext.libraries.cardView
     compile rootProject.ext.libraries.palette
 
-    compile rootProject.ext.libraries.gmsAds
-
     compile rootProject.ext.libraries.rxandroid
     compile rootProject.ext.libraries.rxbinding
 
@@ -91,4 +90,6 @@ dependencies {
     apt rootProject.ext.aptLibraries.daggerCompiler
 
     compile rootProject.ext.libraries.timber
+
+    compile 'com.google.firebase:firebase-crash:9.0.0'
 }
