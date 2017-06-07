@@ -5,14 +5,20 @@ import com.yzeng.hackernews.R;
 import com.yzeng.hackernews.test.robolectric.support.ShadowSnackbar;
 import com.yzeng.hackernews.view.activity.MainActivity;
 import com.yzeng.hackernews.view.fragment.NewsFragment;
+import com.yzeng.hackernews.view.fragment.PicsFragment;
+import com.yzeng.hackernews.view.fragment.TopStoryFragment;
+
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowToast;
+import org.robolectric.util.ActivityController;
+
 import static com.yzeng.hackernews.test.robolectric.support.Assert.assertSnackbarIsShown;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,15 +32,15 @@ public class MainActivityRobolectricTest {
     final static String TEST_TEXT = "This is a test text.";
     private MainActivity activity;
 
-    NewsFragment homeFragment;
+    PicsFragment homeFragment;
 
     @Before
     public void setUp() throws Exception {
-        activity = Robolectric.setupActivity(MainActivity.class);
-
+        ActivityController<MainActivity> activityActivityController = Robolectric.buildActivity(MainActivity.class, MainActivity.getCallingIntent(RuntimeEnvironment.application));
+        activity = activityActivityController.create().get();
         assertNotNull(activity);
 
-        homeFragment = (NewsFragment)activity
+        homeFragment = (PicsFragment)activity
                 .getSupportFragmentManager().findFragmentById(R.id.offers_fragment);
 
         Assert.assertNotNull(homeFragment);
